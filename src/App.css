@@ -17,6 +17,7 @@
 	background-color: #eee;
 	width: 65vw;
 	height: 55vh;
+	overflow: auto;
 }
 
 .terminal {

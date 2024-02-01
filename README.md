@@ -1,5 +1,11 @@
 # Phasmaruo Hugo Manager
 ### Phasmaruo Hugo Manager is a convenient Hugo Blog Manager Developed by Phasmaruo
 ### Written by Tauri + React + Typescript  
-### This is the Nightly Build Version 0.0.1  
+### This is the Nightly Build Version 0.0.2  
 ### This version is only a UI application and does not include any features yet.
+
+---
+## Version 0.0.2 Update.
+### Fixed bug with incorrect css styling of react-tabs component.
+### Updated the text of Files in Menu and added a shortcut key.
+### Added scrollbars for the code area.
