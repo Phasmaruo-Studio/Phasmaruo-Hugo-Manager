@@ -1,0 +1,15 @@
+.localfunc {
+    position: relative;
+    width: 70%;
+    display: inline-block;
+}
+.uploadfunc {
+    position: absolute;
+    width: 30%;
+    display: inline-block;
+}
+
+.uploadfunc button {
+    padding-top: 15%;
+    padding-bottom: 15%;
+}

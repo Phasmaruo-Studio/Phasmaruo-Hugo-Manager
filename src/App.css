@@ -1,0 +1,71 @@
+.logo.vite:hover {
+  	filter: drop-shadow(0 0 2em #747bff);
+}
+
+.logo.react:hover {
+  	filter: drop-shadow(0 0 2em #61dafb);
+}
+
+.tabs {
+	float: left;
+	width: 65vw;
+}
+
+.code {
+	margin: 5px;
+	padding: 5px;
+	background-color: #eee;
+	width: 65vw;
+	height: 55vh;
+}
+
+.terminal {
+	background-color: #ccc;
+	margin: 5px;
+	padding: 5px;
+	width: 65vw;
+	height: 26.5vh;
+}
+
+.control {
+	background-color: #eee;
+	margin: 5px;
+	padding: 5px;
+	width: 65vw;
+	height: 26.5vh;
+}
+
+.close {
+	border: none;
+	height: 13px;
+	line-height: 13px;
+	width: 13px;
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 10px;
+	margin-right: 0;
+	border-radius: 0;
+	background-color: #f6f6f6;
+}
+.close:hover {
+	background-color: #eee;
+}
+
+@media (prefers-color-scheme: dark) {
+	.code {
+		background-color: #2f2f2f;
+	}
+	.close {
+		background-color: #0f0f0f;
+	}
+	.close:hover {
+		background-color: #555;
+	}
+	.control {
+		background-color: #2f2f2f;
+	}
+	.terminal {
+		background-color: #000000;
+	}
+}
