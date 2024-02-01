@@ -26,8 +26,8 @@ pub fn init(context: &Context<EmbeddedAssets>) -> Menu {
     let file_menu = Submenu::new(
         "File",
         Menu::new()
-            .add_item(CustomMenuItem::new("new_file".to_string(), "New File"))
-            .add_item(CustomMenuItem::new("edit_file".to_string(), "Edit File")),
+            .add_item(CustomMenuItem::new("new_project".to_string(), "New Project").accelerator("CmdOrCtrl+N"))
+            .add_item(CustomMenuItem::new("open_project".to_string(), "Open Project").accelerator("CmdOrCtrl+O")),
     );
     // 编辑菜单（自定义菜单）
     let edit_menu = Submenu::new(
@@ -61,19 +61,11 @@ pub fn handler(event: WindowMenuEvent) {
     let win = Some(event.window());
     // 匹配菜单 id
     match event.menu_item_id() {
-        "new_file" => {
-            // debug 信息（终端输出）
-            dbg!("new file");
+        "new_project" => {
+            message(win, "New Project", "New Project")
         }
-        "edit_file" => {
-            // 发送信息到菜单所属窗口（弹窗形式）
-            message(win, "Eidt File", "TODO");
-        }
-        "undo" => {
-            dbg!("undo");
-        }
-        "redo" => {
-            dbg!("redo");
+        "open_project" => {
+            message(win, "Open Project", "Open Project");
         }
         _ => {}
     }
