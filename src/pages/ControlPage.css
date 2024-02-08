@@ -13,3 +13,10 @@
     padding-top: 15%;
     padding-bottom: 15%;
 }
+
+button:disabled {
+    background-color: #eeeeee;
+    border: none;
+    box-shadow: 0 -2px -2px rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}

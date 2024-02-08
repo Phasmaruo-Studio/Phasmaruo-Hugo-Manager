@@ -29,9 +29,7 @@ function App() {
 					</div>
 				</TabPanel>
 				<TabPanel>
-					<div className="terminal">
-						<TerminalPage />
-					</div>
+					<TerminalPage />
 				</TabPanel>
 			</Tabs>
     	</div>

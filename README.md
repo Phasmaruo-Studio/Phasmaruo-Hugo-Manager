@@ -5,7 +5,8 @@
 ### This version is only a UI application and does not include any features yet.
 
 ---
-## Version 0.0.2 Update.
-### Fixed bug with incorrect css styling of react-tabs component.
-### Updated the text of Files in Menu and added a shortcut key.
-### Added scrollbars for the code area.
+## Version 0.1.0 Update.
+### Added terminal (known bugs in this component).
+### Added default disabled effect for Control interface.
+### Added loading effect in FileExplorer component.
+### Create macOS Arm Version.

@@ -4,13 +4,13 @@ export default function ControlPage() {
     return (
         <div>
             <div className="localfunc">
-                <button>Create a new blog</button>
-                <button>Edit setting file</button>
-                <button>Use another template</button>
-                <button>Choose behave in server</button>
+                <button disabled>Create a new blog</button>
+                <button disabled>Edit setting file</button>
+                <button disabled>Use another template</button>
+                <button disabled>Choose behave in server</button>
             </div>
             <div className="uploadfunc">
-                <button>UPLOAD TO SERVER</button>
+                <button disabled>UPLOAD TO SERVER</button>
             </div>
         </div>
     )

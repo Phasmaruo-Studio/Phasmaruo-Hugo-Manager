@@ -8,10 +8,19 @@
 }
 button {
     margin: 20px;
+    cursor: pointer;
 }
 
 h2 {
     padding: 20px;
+}
+
+button:active {
+    cursor: wait;
+}
+
+.buttonloading {
+    cursor: wait;
 }
 
 @media (prefers-color-scheme: dark) {
