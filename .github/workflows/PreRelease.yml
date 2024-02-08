@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-20.04, windows-latest, macos-latest-xlarge]
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
     runs-on: ${{ matrix.platform }}
 
     steps:
@@ -37,7 +37,7 @@ jobs:
       - name: Sync node version and setup cache
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: '*'
           cache: 'npm' # Set this to npm, yarn or pnpm.
 
       - name: Install frontend dependencies
