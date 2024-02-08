@@ -46,7 +46,7 @@ jobs:
 
       - name: Build macOS Arm
         if: matrix.platform == 'macos-latest'
-        run: rustup target add macos
+        run: rustup target add aarch64-apple-darwin
 
       - name: Build the app (macOS)
         if: matrix.platform == 'macos-latest'
