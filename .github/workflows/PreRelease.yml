@@ -44,7 +44,12 @@ jobs:
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
         run: npm install # Change this to npm, yarn or pnpm.
 
-      - name: Build the app
+      - name: Build macOS Arm
+        if: matrix.platform == 'macos-latest'
+        run: rustup target add macos
+
+      - name: Build the app (macOS)
+        if: matrix.platform == 'macos-latest'
         uses: tauri-apps/tauri-action@v0
 
         env:
@@ -56,3 +61,16 @@ jobs:
           releaseDraft: true
           prerelease: true
           args: 'target universal-apple-darwin'
+
+      - name: Build the app (Other)
+        if: matrix.platform != 'macos-latest'
+        uses: tauri-apps/tauri-action@v0
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }} # This only works if your workflow triggers on new tags.
+          releaseName: 'Phasmaruo Hugo Manager v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
+          releaseBody: 'See the assets to download and install this version.'
+          releaseDraft: true
+          prerelease: true
