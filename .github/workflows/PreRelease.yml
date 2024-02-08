@@ -46,7 +46,7 @@ jobs:
 
       - name: Build the app (macOS only)
         if: matrix.platform == 'macos-latest'
-        uses: tauri-apps/tauri-action@dev
+        uses: tauri-apps/tauri-action@v0.4.5
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
 
       - name: Build the app (Other)
         if: matrix.platform != 'macos-latest'
-        uses: tauri-apps/tauri-action@v0
+        uses: tauri-apps/tauri-action@v0.4.5
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
