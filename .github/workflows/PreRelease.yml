@@ -35,7 +35,7 @@ jobs:
           workspaces: './src-tauri -> target'
 
       - name: Sync node version and setup cache
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '*'
           cache: 'npm' # Set this to npm, yarn or pnpm.
@@ -44,29 +44,71 @@ jobs:
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
         run: npm install # Change this to npm, yarn or pnpm.
 
-      - name: Build the app (macOS only)
-        if: matrix.platform == 'macos-latest'
-        uses: tauri-apps/tauri-action@v0.4.5
-
+      - name: Build the app for Linux amd64 or Windows amd64
+        if: matrix.platform != 'macos-latest'
+        uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }} # This only works if your workflow triggers on new tags.
+          tagName: __VERSION__
+          releaseName: 'Phasmaruo Hugo Manager v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
+          releaseBody: 'See the assets to download and install this version.'
+          releaseDraft: true
+          prerelease: true
+
+      - name: Reconfigure for MacOS Universal
+        if: matrix.platform == 'macos-latest'
+        run: rustup target add aarch64-apple-darwin && rustup target add x86_64-apple-darwin
+
+      - name: Build the app for MacOS Universal
+        if: matrix.platform == 'macos-latest'
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: __VERSION__
           releaseName: 'Phasmaruo Hugo Manager v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
           releaseBody: 'See the assets to download and install this version.'
           releaseDraft: true
           prerelease: true
           args: --target universal-apple-darwin
+      
+      - name: Reconfigure for Windows x86
+        if: matrix.platform == 'windows-latest'
+        run: rustup target add i686-pc-windows-msvc
 
-      - name: Build the app (Other)
-        if: matrix.platform != 'macos-latest'
-        uses: tauri-apps/tauri-action@v0.4.5
-
+      - name: Build the app for Windows x86
+        if: matrix.platform == 'windows-latest'
+        uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }} # This only works if your workflow triggers on new tags.
+          tagName: __VERSION__
           releaseName: 'Phasmaruo Hugo Manager v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
           releaseBody: 'See the assets to download and install this version.'
           releaseDraft: true
           prerelease: true
+          args: --target i686-pc-windows-msvc
+
+      - name: Install dependencies for Windows on ARM64
+        if: matrix.platform == 'windows-latest'
+        uses: TheMrMilchmann/setup-msvc-dev@v3
+        with:
+          arch: amd64_arm64
+
+      - name: Reconfigure for Windows on ARM64
+        if: matrix.platform == 'windows-latest'
+        run: rustup target add aarch64-pc-windows-msvc
+      
+      - name: Build the app for Windows on ARM64
+        if: matrix.platform == 'windows-latest'
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: __VERSION__
+          releaseName: 'Phasmaruo Hugo Manager v__VERSION__' # tauri-action replaces \_\_VERSION\_\_ with the app version.
+          releaseBody: 'See the assets to download and install this version.'
+          releaseDraft: true
+          prerelease: true
+          args: --target aarch64-pc-windows-msvc --bundles nsis
